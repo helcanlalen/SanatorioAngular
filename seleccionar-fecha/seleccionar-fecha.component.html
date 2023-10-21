@@ -1,0 +1,59 @@
+<div *ngIf="clientData">
+  <div class="container margin">
+    <label for="exampleForm3">NIT</label>
+    <input type="text" id="exampleForm5" class="form-control" [value]="clientData.firstName + ' ' +  clientData.lastName" disabled>
+  </div>
+</div>
+
+<form class="login-form" #userEditForm="ngForm" (ngSubmit)="buscarDoctores()">
+
+
+  <div class="seleccionar-fecha-container">
+    <label for="fecha">Seleccionar fecha:</label>
+    <input type="date" name="fecha" #fecha="ngModel" [(ngModel)]="busqueda.fecha">
+  </div>
+
+  <div class="container margin">
+    <label>Especialidad</label>
+    <select class="form-control" name="especialidad" #especialidad="ngModel" [(ngModel)]="busqueda.especialidad">
+      <option *ngFor="let S of listSpecialty" [value]="S._id">{{S.type}}</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-success relative waves-light" mdbWavesEffect>Buscar Doctores</button>
+</form>
+
+<div *ngIf="showData">
+  <div class="col-sm-8">
+    <table class="table table-hover table-sm table-bordered">
+      <thead>
+        <tr class="#64b5f6 blue lighten-2 white-text">
+          <th>Nombres</th>
+          <th>Apellido</th>
+          <th>Clinica</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let A of showData">
+          <td (click)="buscarAgendaByDoctor(A._id)">{{A.firstName}}</td>
+          <td (click)="buscarAgendaByDoctor(A._id)">{{A.lastName}}</td>
+          <td (click)="buscarAgendaByDoctor(A._id)">{{A.clinic}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="showHorarios">
+  <form class="login-form" #userEditForm="ngForm" (ngSubmit)="addCita()">
+    <div class="container margin">
+      <label>Horarios disponibles </label>
+      <select class="form-control" name="horario" #horario="ngModel" [(ngModel)]="cita.horario">
+        <option value="" disabled selected>Seleccionar horario</option>
+        <option *ngFor="let horario of horarios1" [value]="horario">{{ horario }}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-success relative waves-light" mdbWavesEffect>Agendar Cita</button>
+  </form>
+</div>

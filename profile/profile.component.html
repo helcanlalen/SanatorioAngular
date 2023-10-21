@@ -1,0 +1,102 @@
+<div class="row">
+  <div class="col-md-8 text-left">
+    <div class="logotipo"></div>
+  </div>
+  <div class="col-md-4 text-right margin">
+  </div>
+</div>
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark #039be5 light-blue darken-1 ie-nav" [containerInside]="false">
+  <mdb-navbar-brand>
+    <a class="logo navbar-brand" href="#">
+      <strong>Sanatorio Cuilapa</strong>
+    </a>
+  </mdb-navbar-brand>
+  <links>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active waves-light" mdbWavesEffect>
+        <a class="nav-link" (click)="options.show()">Opciones
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav nav-flex-icons">
+      <li class="nav-item waves-light" mdbWavesEffect>
+        <a class="nav-link">
+          <i class="fa fa-user iconav"></i>Mi Perfil</a>
+      </li>
+      <li class="nav-item waves-light" mdbWavesEffect>
+        <a class="nav-link" (click)="LogOut()">
+          <i class="fa fa-sign-out iconav"></i>Salir</a>
+      </li>
+    </ul>
+  </links>
+</mdb-navbar>
+
+<form class="login-form" #userEditForm="ngForm" (ngSubmit)="updateProfile()" style="margin-top: 30px;">
+    <h1 class="text-center">Mis Datos de usuario</h1>
+  <div class="wrap">
+    <div class="row">
+        
+      <div class="col-4 container">
+        
+
+          <div class="form-group divc">
+            <label for="formGroupExampleInput">Nombres</label>
+            <input type="text" class="form-control labelA" placeholder="Nombres" name="firstName" #firstName="ngModel" [(ngModel)]="client.firstName"
+              required>
+          </div>
+
+          <div class="form-group divc">
+            <label for="formGroupExampleInput">Apellidos</label>
+            <input type="text" class="form-control labelA" placeholder="Appellidos" name="lastName" #lastName="ngModel" [(ngModel)]="client.lastName"
+              required>
+          </div>
+
+          <div class="form-group divc">
+            <label for="formGroupExampleInput">DPI</label>
+            <input type="text" class="form-control labelA" placeholder="DPI" name="dpi" #dpi="ngModel" [(ngModel)]="client.dpi" required>
+          </div>
+
+          <div class="form-group divc">
+            <label for="formGroupExampleInput">Nit</label>
+            <input type="text" class="form-control labelA" placeholder="Email de Usuario" name="nit" #nit="ngModel" [(ngModel)]="client.nit"
+              required>
+          </div>
+
+          <div class="form-group divc">
+            <label for="formGroupExampleInput">Telefono</label>
+            <input type="text" class="form-control labelA" placeholder="Email de Usuario" name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="client.phoneNumber"
+              required>
+          </div>
+
+          <div class="form-group divc">
+            <label for="formGroupExampleInput">Email</label>
+            <input type="text" class="form-control labelA" placeholder="Email de Usuario" name="email" #email="ngModel" [(ngModel)]="client.email"
+              required>
+          </div>
+
+          <div class="form-group divc">
+            <button type="submit" class="btn btn-primary waves-light">Editar</button>
+          </div>
+
+      </div>
+      <div class="col-4 container">
+        <h4 class="text-center">
+          <span class="badge green">Mi foto de perfil.</span>
+        </h4>
+        <div class="avatar text-center">
+          <img class="imgpro" src="{{ url + 'get-image/' + identity.image }}" *ngIf="identity.image">
+          <img class="imgpro" src="./assets/user.png" *ngIf="!identity.image" />
+        </div>
+        <div class="file">
+          <p></p>
+          <input type="file" placeholder="subir Imagen" (change)="fileChangeEvent($event)">
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+</form>
